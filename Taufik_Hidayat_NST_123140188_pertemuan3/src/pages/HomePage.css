@@ -1,0 +1,11 @@
+/* src/pages/HomePage.css */
+
+.homepage-container {
+  max-width: 1024px;
+  margin: 0 auto;
+}
+
+.controls-card {
+  padding: 20px;
+  margin-bottom: 24px;
+}

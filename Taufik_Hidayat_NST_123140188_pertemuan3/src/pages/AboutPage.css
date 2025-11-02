@@ -1,0 +1,84 @@
+/* src/pages/AboutPage.css */
+
+.about-page-container {
+  max-width: 800px; /* Lebar konten lebih nyaman untuk dibaca */
+  margin: 20px auto;
+}
+
+.about-card,
+.stats-card {
+  margin-bottom: 24px;
+}
+
+.about-card h2,
+.stats-card h2 {
+  font-size: 1.75rem;
+  font-weight: 700;
+  margin-top: 0;
+  margin-bottom: 16px;
+}
+
+.about-card p,
+.about-card li {
+  font-size: 1rem;
+  color: var(--text-secondary);
+  line-height: 1.6;
+}
+
+.about-card ul {
+  padding-left: 20px;
+}
+
+.about-card code {
+  background-color: #EBEBEB;
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-family: monospace;
+  color: var(--text-primary);
+}
+
+/* Dark mode untuk tag <code> */
+@media (prefers-color-scheme: dark) {
+  .about-card code {
+    background-color: #3A3A3C;
+  }
+}
+
+/* ----- Styling Grid Statistik ----- */
+
+.stats-grid {
+  display: grid;
+  /* 2 kolom di layar besar, 1 kolom di layar kecil */
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 20px;
+}
+
+.stat-item {
+  /* Style card-dalam-card */
+  background-color: var(--bg-primary); 
+  padding: 20px;
+  border-radius: 10px;
+  border: 1px solid #EBEBEB;
+}
+
+/* Dark mode untuk item stat */
+@media (prefers-color-scheme: dark) {
+  .stat-item {
+    background-color: #1C1C1E; 
+    border-color: #3A3A3C;
+  }
+}
+
+.stat-value {
+  display: block;
+  font-size: 2.5rem; /* Angka besar */
+  font-weight: 700;
+  color: var(--accent-blue); /* Warna aksen untuk angka */
+  margin-bottom: 4px;
+}
+
+.stat-label {
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: var(--text-secondary);
+}
