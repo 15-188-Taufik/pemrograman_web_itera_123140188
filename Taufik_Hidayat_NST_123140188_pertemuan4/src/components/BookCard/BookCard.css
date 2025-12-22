@@ -1,0 +1,103 @@
+/* src/components/BookCard/BookCard.css */
+
+.book-card {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+  padding: 16px 20px; /* Padding lebih kecil untuk card list */
+  transition: transform var(--transition-main), box-shadow var(--transition-main);
+}
+
+.book-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.07);
+}
+
+.book-info {
+  flex: 1;
+  min-width: 0; /* Mencegah teks overflow */
+}
+
+.book-title {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin: 0 0 4px 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis; /* Judul tidak terpotong berantakan */
+}
+
+.book-author {
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  margin: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.book-status-actions {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex-shrink: 0; /* Mencegah item ini 'menyusut' */
+  padding-left: 16px;
+}
+
+/* ----- Status Badge ----- */
+.book-status {
+  font-size: 0.8rem;
+  font-weight: 600;
+  padding: 4px 10px;
+  border-radius: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.status-owned {
+  background-color: #E0F5E9; /* Apple Green light */
+  color: #00822E;
+}
+.status-reading {
+  background-color: #E0F0FF; /* Apple Blue light */
+  color: #0058D6;
+}
+.status-wishlist {
+  background-color: #FEF3E0; /* Apple Orange light */
+  color: #9D5A00;
+}
+
+/* Dark mode badges */
+@media (prefers-color-scheme: dark) {
+  .status-owned { background-color: #344A3A; color: #60D68A; }
+  .status-reading { background-color: #2C3A5A; color: #5EA0FF; }
+  .status-wishlist { background-color: #4C3C2C; color: #FFB75A; }
+}
+
+
+/* ----- Tombol Aksi ----- */
+.book-actions {
+  display: flex;
+  gap: 8px;
+}
+
+.action-btn {
+  font-size: 0.9rem;
+  font-weight: 500;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 4px;
+  color: var(--accent-blue);
+  text-decoration: none;
+  transition: opacity var(--transition-main);
+}
+.action-btn:hover {
+  opacity: 0.7;
+}
+
+.delete-btn {
+  color: var(--accent-red);
+}
