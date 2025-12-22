@@ -1,0 +1,3 @@
+[run]
+source = python_pyramid
+omit = python_pyramid/test*

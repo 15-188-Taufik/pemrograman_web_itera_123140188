@@ -1,0 +1,49 @@
+{% extends "layout.jinja2" %}
+
+{% block content %}
+<div class="glass-panel">
+    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+        <div>
+            <h1>Daftar Matakuliah</h1>
+            <p class="subtitle">Kelola kurikulum program studi</p>
+        </div>
+        <a href="{{ request.route_url('add_course') }}" class="btn btn-primary">
+            + Tambah Baru
+        </a>
+    </div>
+
+    {% if courses %}
+    <table>
+        <thead>
+            <tr>
+                <th>Kode</th>
+                <th>Nama Matakuliah</th>
+                <th>SKS</th>
+                <th>Deskripsi Singkat</th>
+                <th style="text-align: right;">Aksi</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for course in courses %}
+            <tr>
+                <td><strong>{{ course.kode }}</strong></td>
+                <td>{{ course.nama }}</td>
+                <td><span style="background: #e5e5ea; padding: 4px 8px; border-radius: 6px; font-size: 12px; font-weight: 600;">{{ course.sks }} SKS</span></td>
+                <td style="color: #666; font-size: 14px;">{{ course.deskripsi }}</td>
+                <td style="text-align: right;">
+                    <div class="actions" style="justify-content: flex-end;">
+                        <a href="{{ request.route_url('edit_course', id=course.id) }}" class="btn btn-secondary" style="padding: 6px 12px; font-size: 13px;">Edit</a>
+                        <a href="{{ request.route_url('delete_course', id=course.id) }}" class="btn btn-danger" style="padding: 6px 12px; font-size: 13px;" onclick="return confirm('Yakin ingin menghapus matakuliah ini?');">Hapus</a>
+                    </div>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% else %}
+    <div style="text-align: center; padding: 40px; color: #86868b;">
+        <p>Belum ada data matakuliah.</p>
+    </div>
+    {% endif %}
+</div>
+{% endblock %}
