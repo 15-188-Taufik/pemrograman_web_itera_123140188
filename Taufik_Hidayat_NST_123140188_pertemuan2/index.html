@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modern Personal Dashboard</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header>
+        <div class="header-title-group">
+            <img src="T.png" alt="Taufik's Logo" class="header-logo">
+            <h1>Taufik's Personal Dashboard</h1>
+            <p class="blinking-desc">Your daily task & schedule manager</p>
+        </div>
+        
+        <div class="header-controls">
+            <span class="clock-icon">⏰</span>
+            <div id="clock" class="clock">Memuat jam...</div>
+        </div>
+    </header>
+
+    <main class="dashboard">
+
+        <div class="card" id="weather-card">
+            <span class="card-icon">☁️</span>
+            <h3>Cuaca Saat Ini (Bandar Lampung)</h3>
+            
+            <div class="card-content">
+                <div id="weather-info">Memuat data cuaca...</div>
+            </div>
+        </div>
+
+        <div class="card" id="schedule-card">
+            <span class="card-icon">📅</span>
+            <h3>Jadwal Kuliah</h3>
+            
+            <div class="card-content">
+                <form id="form-jadwal">
+                    <input type="text" id="input-matkul" placeholder="Mata Kuliah" required>
+                    <div class="form-row">
+                        <select id="input-hari" required>
+                            <option value="" disabled selected>Pilih Hari</option>
+                            <option value="1">Senin</option>
+                            <option value="2">Selasa</option>
+                            <option value="3">Rabu</option>
+                            <option value="4">Kamis</option>
+                            <option value="5">Jumat</option>
+                            <option value="6">Sabtu</option>
+                            <option value="0">Minggu</option>
+                        </select>
+                        <input type="time" id="input-waktu" required>
+                    </div>
+                    <button type="submit">Tambah Jadwal</button>
+                </form>
+                
+                <table class="schedule-table">
+                    <thead>
+                        <tr>
+                            <th>Hari</th>
+                            <th>Jadwal</th>
+                        </tr>
+                    </thead>
+                    <tbody id="jadwal-body">
+                        <tr id="jadwal-senin">
+                            <td>Senin</td>
+                            <td class="schedule-items" id="jadwal-senin-content"></td>
+                        </tr>
+                        <tr id="jadwal-selasa">
+                            <td>Selasa</td>
+                            <td class="schedule-items" id="jadwal-selasa-content"></td>
+                        </tr>
+                        <tr id="jadwal-rabu">
+                            <td>Rabu</td>
+                            <td class="schedule-items" id="jadwal-rabu-content"></td>
+                        </tr>
+                        <tr id="jadwal-kamis">
+                            <td>Kamis</td>
+                            <td class="schedule-items" id="jadwal-kamis-content"></td>
+                        </tr>
+                        <tr id="jadwal-jumat">
+                            <td>Jumat</td>
+                            <td class="schedule-items" id="jadwal-jumat-content"></td>
+                        </tr>
+                        <tr id="jadwal-sabtu">
+                            <td>Sabtu</td>
+                            <td class="schedule-items" id="jadwal-sabtu-content"></td>
+                        </tr>
+                        <tr id="jadwal-minggu">
+                            <td>Minggu</td>
+                            <td class="schedule-items" id="jadwal-minggu-content"></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="card" id="task-card">
+            <span class="card-icon">✅</span>
+            <h3>Daftar Tugas</h3>
+            
+            <div class="card-content">
+                <form id="form-tugas">
+                    <input type="text" id="input-tugas" placeholder="Tugas baru..." required>
+                    <input type="date" id="input-tugas-deadline" required>
+                    <button type="submit">Tambah Tugas</button>
+                </form>
+                <ul id="list-tugas"></ul>
+            </div>
+        </div>
+
+        <div class="card" id="note-card">
+            <span class="card-icon">📝</span>
+            <h3>Catatan Singkat</h3>
+            
+            <div class="card-content">
+                <form id="form-catatan">
+                    <input type="text" id="input-catatan-judul" placeholder="Judul" required>
+                    <textarea id="input-catatan-isi" placeholder="Isi catatan..."></textarea>
+                    <button type="submit">Simpan Catatan</button>
+                </form>
+                <ul id="list-catatan"></ul>
+            </div>
+        </div>
+
+    </main>
+
+    <div id="notification" class="notification">
+        Data berhasil disimpan!
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

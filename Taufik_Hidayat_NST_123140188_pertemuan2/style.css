@@ -1,0 +1,506 @@
+/* =================================
+   RESET DAN FONT
+   ================================= */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    line-height: 1.6;
+    background: linear-gradient(135deg, #1f005c 0%, #3d007a 25%, #5a0099 50%, #7b00b8 75%, #9c27b0 100%);
+    background-attachment: fixed;
+    color: #e0e0e0;
+    overflow-x: hidden;
+    min-height: 100vh;
+}
+
+@keyframes rainbow {
+    0%   { color: #ffff00; } /* Kuning */
+    20%  { color: #00ff00; } /* Hijau */
+    40%  { color: #00f2ff; } /* Cyan */
+    60%  { color: #ff00c1; } /* Pink */
+    80%  { color: #ff7f00; } /* Oranye */
+    100% { color: #ffff00; } /* Kembali ke Kuning */
+}
+
+@keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.3; }
+}
+
+/* Efek 'Blob' */
+body::before, body::after {
+    content: '';
+    position: fixed;
+    border-radius: 50%;
+    opacity: 0.3;
+    filter: blur(150px);
+    z-index: -1;
+}
+body::before {
+    background: #00f2ff;
+    width: 450px;
+    height: 450px;
+    top: -100px;
+    left: -150px;
+}
+body::after {
+    background: #ff00c1;
+    width: 500px;
+    height: 500px;
+    bottom: -150px;
+    right: -150px;
+}
+
+/* =================================
+   HEADER MODERN
+   ================================= */
+header {
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    padding: 1.5rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+}
+
+/* --- DIPERBARUI: align-items dan gap diubah --- */
+.header-title-group {
+    display: flex;
+    align-items: center; /* Mengubah dari baseline ke center */
+    gap: 0.75rem; /* Mengurangi jarak antar elemen */
+}
+
+/* --- BARU: Styling untuk Logo --- */
+.header-logo {
+    height: 2.75rem; /* Sama dengan font-size h1 */
+    width: auto; /* Menjaga rasio aspek */
+    /* Opsional: memberi sedikit efek agar menyatu */
+    filter: drop-shadow(0 0 3px rgba(255, 255, 255, 0.2));
+}
+
+header h1 {
+    color: #fff;
+    font-weight: 700;
+    font-size: 1.75rem;
+    white-space: nowrap; /* Mencegah H1 terpotong jika layar kecil */
+}
+
+.blinking-desc {
+    font-size: 1rem;
+    font-weight: 500;
+    animation: rainbow 4s linear infinite,
+               blink 2.5s ease-in-out infinite;
+    white-space: nowrap;
+}
+
+.header-controls {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem; 
+}
+
+.clock-icon {
+    font-size: 1.5rem;
+    line-height: 1;
+}
+
+.clock {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #fff; 
+}
+
+/* =================================
+   LAYOUT DASHBOARD
+   ================================= */
+.dashboard {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 1.5rem;
+    padding: 0 2rem 2rem 2rem;
+}
+
+/* =================================
+   CARD GLASSMORPHISM
+   ================================= */
+.card {
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 1.5rem; 
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.2); 
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275), 
+                box-shadow 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-10px) scale(1.02);
+    box-shadow: 0 16px 40px 0 rgba(0, 0, 0, 0.3);
+}
+
+.card h3 {
+    color: #fff;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    padding-bottom: 0.75rem;
+    margin-bottom: 1rem;
+    font-weight: 600;
+    cursor: pointer; 
+    width: 100%; 
+    text-align: left; 
+}
+
+.card-icon {
+    font-size: 4rem; 
+    text-align: center;
+    margin-bottom: 1rem;
+    text-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    display: none; 
+}
+
+.card-content {
+    display: none; 
+}
+.card.open .card-content {
+    display: block; 
+}
+
+.card:not(.open) {
+    align-items: center; 
+    justify-content: center;
+    min-height: 200px; 
+}
+.card:not(.open) .card-icon {
+    display: block; 
+}
+.card:not(.open) h3 {
+    text-align: center;
+    border: none;
+    margin-bottom: 0;
+}
+
+.card:not(.open) {
+    cursor: pointer; 
+}
+.card.open {
+    cursor: default; 
+}
+.card h3 {
+    cursor: pointer; 
+}
+
+
+/* =================================
+   FORM MINIMALIST
+   ================================= */
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    margin-bottom: 1rem;
+}
+
+.form-row {
+    display: flex;
+    gap: 0.75rem;
+}
+.form-row input,
+.form-row select { 
+    width: 50%;
+}
+
+input[type="text"],
+select,
+input[type="date"],
+input[type="time"],
+textarea {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    font-size: 1rem;
+    font-family: 'Poppins', sans-serif;
+    background: rgba(0, 0, 0, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: #fff;
+    border-radius: 0.75rem;
+    -webkit-appearance: none; 
+    -moz-appearance: none;
+    appearance: none;
+}
+
+select option {
+    background: #3d007a; 
+    color: #fff;
+}
+
+select {
+    background-image: url('data:image/svg+xml;utf8,<svg fill="white" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M7 10l5 5 5-5z"/></svg>');
+    background-repeat: no-repeat;
+    background-position: right 1rem center;
+    background-size: 1.5em;
+    padding-right: 3rem; 
+}
+select:invalid {
+  color: #ccc; 
+}
+
+input[type="time"]::-webkit-calendar-picker-indicator,
+input[type="date"]::-webkit-calendar-picker-indicator {
+    filter: invert(1);
+    cursor: pointer;
+}
+input[type="time"]:invalid,
+input[type="date"]:invalid {
+  color: #ccc; 
+}
+
+input[type="text"]::placeholder, 
+textarea::placeholder {
+    color: #ccc;
+    opacity: 0.8;
+}
+textarea {
+    resize: vertical;
+    min-height: 80px;
+}
+
+/* =================================
+   BUTTON GRADIENT
+   ================================= */
+button[type="submit"], .action-btn {
+    border: none;
+    padding: 0.75rem;
+    border-radius: 0.75rem;
+    font-size: 1rem;
+    font-weight: 600;
+    color: white;
+    cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    background: linear-gradient(90deg, #00c6ff 0%, #0072ff 100%);
+}
+button[type="submit"]:hover, .action-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(0, 198, 255, 0.3);
+}
+button[type="submit"]:active, .action-btn:active {
+    transform: translateY(0px);
+}
+
+.list-item-controls {
+    display: flex;
+    gap: 0.5rem;
+    margin-left: 1rem;
+    flex-shrink: 0;
+}
+
+.action-btn {
+    padding: 0.4rem 0.7rem;
+    font-size: 0.8rem;
+    border-radius: 0.5rem;
+}
+
+.edit-btn { background: linear-gradient(90deg, #8e2de2 0%, #4a00e0 100%); }
+.edit-btn:hover { box-shadow: 0 4px 15px rgba(142, 45, 226, 0.3); }
+
+.delete-btn { background: linear-gradient(90deg, #ff5f6d 0%, #ffc371 100%); }
+.delete-btn:hover { box-shadow: 0 4px 15px rgba(255, 95, 109, 0.3); }
+
+.save-btn { background: linear-gradient(90deg, #11998e 0%, #38ef7d 100%); }
+.save-btn:hover { box-shadow: 0 4px 15px rgba(17, 153, 142, 0.3); }
+
+
+/* =================================
+   LIST & NOTIFIKASI
+   ================================= */
+ul {
+    list-style: none;
+    max-height: 300px;
+    overflow-y: auto;
+    scrollbar-width: thin;
+    scrollbar-color: #0072ff #1f005c;
+}
+ul::-webkit-scrollbar { width: 6px; }
+ul::-webkit-scrollbar-track { background: rgba(0,0,0,0.1); }
+ul::-webkit-scrollbar-thumb { background-color: #0072ff; border-radius: 6px; }
+
+
+ul li {
+    background: rgba(0, 0, 0, 0.15);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    padding: 1rem;
+    border-radius: 0.75rem;
+    margin-bottom: 0.75rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    word-break: break-word;
+}
+.list-item-content { flex-grow: 1; }
+
+.task-item.completed span {
+    text-decoration: line-through;
+    color: #888;
+}
+.task-item.completed { background-color: rgba(0, 0, 0, 0.3); }
+
+.tugas-deadline {
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: #00c6ff; 
+    margin-top: 5px;
+}
+
+.note-item p {
+    font-size: 0.9rem;
+    color: #bbb;
+    margin-top: 0.25rem;
+    white-space: pre-wrap; 
+}
+
+[contenteditable="true"] {
+    background-color: rgba(255, 255, 255, 0.1);
+    outline: 2px solid #00c6ff;
+    padding: 2px 4px;
+    border-radius: 3px;
+}
+
+.notification {
+    position: fixed;
+    bottom: 2rem;
+    left: 50%;
+    transform: translate(-50%, 150%);
+    background: linear-gradient(90deg, #11998e 0%, #38ef7d 100%);
+    color: white;
+    padding: 1rem 2rem;
+    border-radius: 0.75rem;
+    box-shadow: 0 4px 15px rgba(17, 153, 142, 0.4);
+    font-weight: 600;
+    transition: transform 0.4s ease-in-out;
+    z-index: 1000;
+    opacity: 0;
+}
+.notification.show {
+    transform: translate(-50%, 0);
+    opacity: 1;
+}
+.notification.error {
+    background: linear-gradient(90deg, #ff5f6d 0%, #ffc371 100%);
+    box-shadow: 0 4px 15px rgba(255, 95, 109, 0.4);
+}
+
+/* =================================
+   STYLING CARD CUACA
+   ================================= */
+#weather-info {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    gap: 1.25rem; 
+    color: #fff;
+    width: 100%;
+}
+.weather-detail {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem; 
+    background: rgba(0, 0, 0, 0.15);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    padding: 0.75rem;
+    border-radius: 0.75rem; 
+}
+.weather-detail span {
+    font-size: 1.75rem; 
+    line-height: 1;
+    text-shadow: 0 0 5px rgba(0,0,0,0.3);
+}
+.weather-detail div { display: flex; flex-direction: column; }
+.weather-detail strong {
+    font-size: 0.8rem; 
+    font-weight: 400;
+    color: #ddd;
+    text-transform: uppercase;
+}
+.weather-detail p {
+    font-size: 1.1rem; 
+    font-weight: 600;
+    color: #fff;
+    margin-top: 2px; 
+}
+#weather-info .weather-detail:last-child:nth-child(odd) {
+    grid-column: span 2;
+}
+
+/* =================================
+   STYLING TABEL JADWAL
+   ================================= */
+.schedule-table {
+    width: 100%;
+    border-collapse: collapse; 
+    margin-top: 1rem;
+}
+.schedule-table th, .schedule-table td {
+    padding: 0.75rem;
+    text-align: left;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+.schedule-table th {
+    font-size: 0.9rem;
+    color: #ccc;
+    font-weight: 600;
+}
+.schedule-table td:first-child {
+    font-weight: 600;
+    color: #fff;
+    vertical-align: top;
+    width: 70px; 
+}
+.schedule-items {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem; 
+}
+
+.jadwal-item {
+    background: rgba(0, 0, 0, 0.15);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    padding: 0.75rem;
+    border-radius: 0.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    word-break: break-word;
+}
+.jadwal-item-content {
+    flex-grow: 1;
+}
+.jadwal-item-content .jadwal-waktu {
+    font-size: 1rem;
+    font-weight: 600;
+    color: #fff;
+}
+.jadwal-item-content .jadwal-matkul {
+    font-size: 0.9rem;
+    color: #ddd;
+    display: block; 
+    margin-top: 2px;
+}
+
+[contenteditable="true"].jadwal-waktu,
+[contenteditable="true"].jadwal-matkul {
+    color: #fff !important;
+    background-color: rgba(255, 255, 255, 0.1);
+    outline: 2px solid #00c6ff;
+    padding: 2px 4px;
+    border-radius: 3px;
+}
