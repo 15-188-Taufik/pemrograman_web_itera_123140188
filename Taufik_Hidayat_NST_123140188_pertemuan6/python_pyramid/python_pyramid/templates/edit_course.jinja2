@@ -2,32 +2,33 @@
 
 {% block content %}
 <div class="glass-panel" style="max-width: 600px; margin: 0 auto;">
-    <h2>Tambah Matakuliah</h2>
-    <p class="subtitle">Masukkan detail matakuliah baru di bawah ini.</p>
+    <h2>Edit Matakuliah</h2>
+    <p class="subtitle">Perbarui informasi untuk kode <strong>{{ course.kode }}</strong>.</p>
 
-    <form action="{{ request.route_url('add_course') }}" method="POST">
+    <form action="{{ request.route_url('edit_course', id=course.id) }}" method="POST">
+        
         <div class="form-group">
             <label for="kode">Kode Matakuliah</label>
-            <input type="text" name="kode" placeholder="Contoh: IF3001" required>
+            <input type="text" name="kode" value="{{ course.kode }}" required>
         </div>
 
         <div class="form-group">
             <label for="nama">Nama Matakuliah</label>
-            <input type="text" name="nama" placeholder="Contoh: Pemrograman Web" required>
+            <input type="text" name="nama" value="{{ course.nama }}" required>
         </div>
 
         <div class="form-group">
             <label for="sks">Jumlah SKS</label>
-            <input type="number" name="sks" placeholder="3" min="1" max="6" required>
+            <input type="number" name="sks" value="{{ course.sks }}" min="1" max="6" required>
         </div>
 
         <div class="form-group">
             <label for="deskripsi">Deskripsi</label>
-            <textarea name="deskripsi" rows="3" placeholder="Penjelasan singkat tentang matakuliah..."></textarea>
+            <textarea name="deskripsi" rows="4">{{ course.deskripsi }}</textarea>
         </div>
 
-        <div style="margin-top: 30px; display: flex; gap: 15px;">
-            <button type="submit" class="btn btn-primary" style="flex: 1;">Simpan Data</button>
+        <div style="margin-top: 40px; display: flex; gap: 15px;">
+            <button type="submit" class="btn btn-primary" style="flex: 1; font-size: 16px;">Simpan Perubahan</button>
             <a href="{{ request.route_url('home') }}" class="btn btn-secondary">Batal</a>
         </div>
     </form>

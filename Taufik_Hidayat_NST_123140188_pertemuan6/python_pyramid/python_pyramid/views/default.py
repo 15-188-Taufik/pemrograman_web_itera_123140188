@@ -31,31 +31,25 @@ def add_course_view(request):
     # Jika hanya membuka halaman (Method GET), tampilkan form kosong
     return {}
 
-# --- 3. UPDATE: Edit Matakuliah ---
+# --- Pastikan fungsi Edit seperti ini ---
 @view_config(route_name='edit_course', renderer='python_pyramid:templates/edit_course.jinja2')
 def edit_course_view(request):
-    # Ambil ID dari URL
     course_id = int(request.matchdict['id'])
-    
-    # Cari data di database
     course = request.dbsession.query(Course).filter_by(id=course_id).first()
     
     if not course:
         return HTTPNotFound()
 
-    # Jika tombol submit ditekan (Method POST)
     if request.method == 'POST':
         course.kode = request.params['kode']
         course.nama = request.params['nama']
         course.sks = int(request.params['sks'])
         course.deskripsi = request.params['deskripsi']
-        
-        # Tidak perlu dbsession.add(), karena objek sudah terikat session (SQLAlchemy magic)
         return HTTPFound(location=request.route_url('home'))
 
-    # Tampilkan form dengan data lama
+    # PENTING: Mengirim objek 'course' ke template agar bisa dibaca (pre-fill)
     return {'course': course}
-
+    
 # --- 4. DELETE: Hapus Matakuliah ---
 @view_config(route_name='delete_course')
 def delete_course_view(request):
